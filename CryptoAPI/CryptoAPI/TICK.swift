@@ -7,9 +7,11 @@
 
 import Foundation
 
+private var accessToken = "Xmw8lxEKguztuo+9iUWN1A==M2OgF0K47gNJiQAb"
+
 struct TICK: Identifiable, Codable{
-    private var accessToken = "Xmw8lxEKguztuo+9iUWN1A==M2OgF0K47gNJiQAb"
-    let symbol: String
+   
+    var symbol: String
     var price: String
     var id:UUID{
         return UUID()
@@ -18,20 +20,21 @@ struct TICK: Identifiable, Codable{
         symbol = ""
         price = ""
     }
-    init(symbol: String, price: String){
+    init(symbol: String){
         self.symbol = symbol
-        self.price = price
-        
-            
+        self.price = ""
+
     }
-    func updatePrice(symbol: String)-> String{
-        var price = ""
-        Task{
-            do{
-                price = try await getTICK(tickInput: symbol).price
-            } catch{
-                
-            }
+    func updatePrice(symbol: String) async -> String {
+        print("Update Price ", symbol)
+        do {
+            let tick = try await getTICK(tickInput: symbol)
+            
+            print("Update Price ", symbol)
+            return tick.price
+        } catch {
+            print(error)
+            return ""
         }
     }
     
@@ -50,6 +53,7 @@ struct TICK: Identifiable, Codable{
                 do {
                     //parse Json data to tick
                     let tick = try JSONDecoder().decode(TICK.self, from: data)
+                    print("getTICK ", tick)
                     return tick
                 } catch {
                     throw TICKError.decodingFailed

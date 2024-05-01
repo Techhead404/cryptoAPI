@@ -13,7 +13,6 @@ struct ContentView: View {
     
     @State var tickInput = ""
     @State var isShowingTickInfo = false
-    @State var tick: TICK = TICK()
     @EnvironmentObject private var saveTick: TickStore
     
     
@@ -28,12 +27,13 @@ struct ContentView: View {
                         saveTick in
                         HStack{
                             Text(saveTick.symbol)
-                            Text(saveTick.price)
+                            Text(String(format: "%.2f", Double(saveTick.price) ?? 0.00))
                         }
                     }
-                        
-                    
+                }.refreshable {
+                    await saveTick.loadStats()
                 }
+                
                 TextField("Enter Crypto Ticker", text: $tickInput)
                              .padding()
                              .multilineTextAlignment(.center)
@@ -41,10 +41,8 @@ struct ContentView: View {
                 Button(action: {
                    Task {
                         do {
-                            tick = try await getTICK()
-                            isShowingTickInfo.toggle()
-                            tickInput = tick.symbol ?? "LTCBTC"
-                            print(tick)
+                            saveTick.addToken(tick: tickInput)
+                            await saveTick.loadStats()
                         } catch {
                             print(error)
                         }
@@ -55,15 +53,13 @@ struct ContentView: View {
                         .padding()
                 })
             
-            }.sheet(isPresented: $isShowingTickInfo, content: {
-                tickInfoView(tick: $tick)
-            })
+            }
           
         }.onAppear(perform: {
             Task {
                 do {
-                    tick = try await getTICK()
-                    tickInput = tick.symbol ?? ""
+                    await saveTick.loadStats()
+                   
                 }
             }
         })
