@@ -18,7 +18,6 @@ struct ContentView: View {
     
     var body: some View {
         ZStack{
-            //Color.black.ignoresSafeArea()
             VStack{
                 Text("Watchlist")
                     .font(.title)
@@ -27,31 +26,35 @@ struct ContentView: View {
                         saveTick in
                         HStack{
                             Text(saveTick.symbol)
+                            Spacer()
                             Text(String(format: "%.2f", Double(saveTick.price) ?? 0.00))
+                                .padding(.trailing, 8)
+                                .foregroundColor(.green)
                         }
                     }
                 }.refreshable {
                     await saveTick.loadStats()
                 }
                 
-                TextField("Enter Crypto Ticker", text: $tickInput)
+                TextField("Trading Pair", text: $tickInput)
                              .padding()
                              .multilineTextAlignment(.center)
-                             .cornerRadius(5)
+                             .cornerRadius(10)
+                             .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/)
+                             .padding()
+                            
                 Button(action: {
                    Task {
                         do {
                             saveTick.addToken(tick: tickInput)
                             await saveTick.loadStats()
-                        } catch {
-                            print(error)
                         }
                     }
                 }, label: {
-                    Label.init("Add to Watchlist", systemImage: "magnifyingglass")
+                    Label.init("Add to Watchlist", systemImage: "square.and.arrow.up")
                         .padding()
                         .padding()
-                })
+                }).buttonStyle(.bordered)
             
             }
           

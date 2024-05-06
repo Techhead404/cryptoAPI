@@ -25,11 +25,12 @@ struct TICK: Identifiable, Codable{
         self.price = ""
 
     }
+    
+    //updates the storedtick.price after making another api call
     func updatePrice(symbol: String) async -> String {
         print("Update Price ", symbol)
         do {
             let tick = try await getTICK(tickInput: symbol)
-            
             print("Update Price ", symbol)
             return tick.price
         } catch {
@@ -38,12 +39,12 @@ struct TICK: Identifiable, Codable{
         }
     }
     
+    //Gets the price from the input the user entered.
     func getTICK(tickInput: String) async throws -> TICK {
         guard let url = URL(string: "https://api.api-ninjas.com/v1/cryptoprice?symbol=\(tickInput)")
                 else{
                     throw TICKError.invalidURL
                 }
-        
                 var request = URLRequest(url: url)
                 request.httpMethod = "GET"
         request.setValue(accessToken, forHTTPHeaderField: "X-Api-Key")

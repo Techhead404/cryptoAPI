@@ -12,7 +12,6 @@
 		2A51E1592BDFD77A00573CE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A51E1582BDFD77A00573CE6 /* Assets.xcassets */; };
 		2A51E15D2BDFD77A00573CE6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A51E15C2BDFD77A00573CE6 /* Preview Assets.xcassets */; };
 		2A51E1642BDFD80A00573CE6 /* TICK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A51E1632BDFD80A00573CE6 /* TICK.swift */; };
-		2A51E1662BDFD85100573CE6 /* tickInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A51E1652BDFD85100573CE6 /* tickInfoView.swift */; };
 		2A6234A72BE280A400D5A8B7 /* tickClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6234A62BE280A400D5A8B7 /* tickClass.swift */; };
 /* End PBXBuildFile section */
 
@@ -24,7 +23,6 @@
 		2A51E15A2BDFD77A00573CE6 /* CryptoAPI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CryptoAPI.entitlements; sourceTree = "<group>"; };
 		2A51E15C2BDFD77A00573CE6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2A51E1632BDFD80A00573CE6 /* TICK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TICK.swift; sourceTree = "<group>"; };
-		2A51E1652BDFD85100573CE6 /* tickInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tickInfoView.swift; sourceTree = "<group>"; };
 		2A6234A62BE280A400D5A8B7 /* tickClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tickClass.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -59,7 +57,6 @@
 			isa = PBXGroup;
 			children = (
 				2A6234A62BE280A400D5A8B7 /* tickClass.swift */,
-				2A51E1652BDFD85100573CE6 /* tickInfoView.swift */,
 				2A51E1632BDFD80A00573CE6 /* TICK.swift */,
 				2A51E1542BDFD77900573CE6 /* CryptoAPIApp.swift */,
 				2A51E1562BDFD77900573CE6 /* ContentView.swift */,
@@ -152,7 +149,6 @@
 				2A51E1642BDFD80A00573CE6 /* TICK.swift in Sources */,
 				2A6234A72BE280A400D5A8B7 /* tickClass.swift in Sources */,
 				2A51E1552BDFD77900573CE6 /* CryptoAPIApp.swift in Sources */,
-				2A51E1662BDFD85100573CE6 /* tickInfoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
